@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			.mui-input-row {
+				width: 70%;
+				float: right;
+				right: 20%;
+			}
+			.mui-input-group > span {
+				width: 15%;
+				float: left;
+				left: 2%;
+				display: inline;
+			}
+			.mui-input-group > .mui-button-row {
+				float: right;
+				width: 15%;
+				left: 68%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">聊天窗口</h1>
+		</header>
+		<div class="mui-content">
+		    <p>hello mui</p>
+		</div>
+		<nav class="mui-bar mui-bar-tab">
+			<form class="mui-input-group">				
+			    <div class="mui-input-row">
+			    	<input type="text" class="mui-input-clear" placeholder="请输入内容">
+			    </div>				
+				<span class="mui-icon mui-icon-camera"></span>				
+			    <div class="mui-button-row">
+			        <button type="button" class="mui-btn mui-btn-primary" >发送</button>
+			    </div>
+			</form>
+			
+		</nav>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	</body>
+
+</html>
