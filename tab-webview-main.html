@@ -15,48 +15,36 @@
 			body {
 				background-color: #efeff4;
 			}
-			.mui-bar-nav.mui-bar .mui-icon {
-				margin: 0px;
-				padding: 0px;
-				margin-top: 5px;
+			.mui-bar-nav {
+				height: 50px;
+				background-color: #0662BF;
 			}
-			.circle {
-				display: inline-block;
-				/*position: relative;*/
-				width: 36px;
-				height: 36px;
-				border: 2px solid mediumpurple;
-				border-radius: 18px;
-				overflow: hidden;
-				z-index: 100;
+			.mui-title {
+				color: #fff;
+				line-height: 50px;
 			}
-			.circle span {
-				/*position: absolute;*/
-				z-index: 1;
-			}
-			.img {
-				/*opacity:0;*/
-				width: 36px;
-				height: 36px;
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+			    color: #f2f4f5;
+			    border-bottom: 2px solid #f2f4f5;
 			}
 		</style>
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav">
-			<a class="mui-action-menu mui-icon mui-icon-img mui-pull-left">
-				<div class="circle">					
-					<span><img class="img" src="images/me.jpg" alt="头像" /></span>
-				</div>
-			</a>
-			<h1 id="title" class="mui-title ">资讯</h1>
+		<header id="header" class="mui-bar mui-bar-nav">	
+			<h1 id="title" class="mui-title">资讯</h1>
+			<div id="slider" style="display: none;" class="mui-slider mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+				<a id="defaultSubTab" class="mui-control-item mui-active" href="tab-webview-subpage-topic.html">话题</a>
+				<a class="mui-control-item" href="tab-webview-subpage-asking.html">问吧</a>	
+				<a class="mui-control-item" href="tab-webview-subpage-attention.html">关注</a>
+			</div>
 		</header>
 		<nav class="mui-bar mui-bar-tab">
 			<a id="defaultTab" class="mui-tab-item mui-active" href="tab-webview-subpage-about.html">
 				<span class="mui-icon mui-icon-list"></span>
 				<span class="mui-tab-label">资讯</span>
 			</a>
-			<a class="mui-tab-item" href="tab-webview-subpage-chat.html">
+			<a class="mui-tab-item" href="tab-webview-subpage-topic.html">
 				<span class="mui-icon mui-icon-chat"></span>
 				<span class="mui-tab-label">话题</span>
 			</a>
@@ -76,9 +64,9 @@
 //				swipeBack: false,
 //				beforeback: back
 			});
-			var subpages = ['tab-webview-subpage-about.html', 'tab-webview-subpage-chat.html', 'tab-webview-subpage-contact.html', 'tab-webview-subpage-setting.html'];
+			var subpages = ['tab-webview-subpage-about.html', 'tab-webview-subpage-topic.html', 'tab-webview-subpage-contact.html', 'tab-webview-subpage-setting.html'];
 			var subpage_style = {
-				top: '45px',
+				top: '50px',
 				bottom: '51px'
 			};
 			
@@ -102,162 +90,120 @@
 			 //当前激活选项
 			var activeTab = subpages[0];
 			var title = document.getElementById("title");
+			var slider = document.getElementById('slider');
 			 //选项卡点击事件
 			mui('.mui-bar-tab').on('tap', 'a', function(e) {
 				var targetTab = this.getAttribute('href');
 				if (targetTab == activeTab) {
 					return;
 				}
-				//更换标题
-				title.innerHTML = this.querySelector('.mui-tab-label').innerHTML;
-				//显示目标选项卡
-				//若为iOS平台或非首次显示，则直接显示
-				if(mui.os.ios||aniShow[targetTab]){
-					plus.webview.show(targetTab);
-				}else{
-					//否则，使用fade-in动画，且保存变量
-					var temp = {};
-					temp[targetTab] = "true";
-					mui.extend(aniShow,temp);
-					plus.webview.show(targetTab,"fade-in",300);
+				var thisTitle = this.querySelector('.mui-tab-label').innerHTML;
+				if (thisTitle == "话题") {
+					title.style.display = "none";
+					slider.style.display = "block";
+				} else {
+					slider.style.display = "none";
+					title.style.display = "block";
+					//更换标题
+					title.innerHTML = thisTitle;
 				}
-				//隐藏当前;
-				plus.webview.hide(activeTab);
-				//更改当前活跃的选项卡
-				activeTab = targetTab;
+				
+				
+				if (slider.style.display == "block"){
+
+					var subpages_chat = ['tab-webview-subpage-topic.html', 'tab-webview-subpage-asking.html', 'tab-webview-subpage-attention.html'];
+					var subpage_chat_style = {
+						top: '50px',
+						bottom: '51px'
+					};
+					
+					var aniShow_chat = {};
+					
+					//初始化tab样式
+					var slider_tab = document.querySelectorAll('.mui-control-item');
+					for (var i =0; i<3; i++) {
+						if (i > 0){
+							slider_tab[i].className.replace(' mui-active', ' ');
+						} else {
+							slider_tab[i].className += " mui-active";
+						}
+							
+					}
+					 //创建子页面，首个选项卡页面显示，其它均隐藏；
+					mui.plusReady(function() {
+						var self = plus.webview.currentWebview();
+						for (var i = 0; i < 3; i++) {
+							var temp = {};
+							var sub = plus.webview.create(subpages_chat[i], subpages_chat[i], subpage_chat_style);
+							if (i > 0) {
+								sub.hide();
+							}else{
+								temp[subpages_chat[i]] = "true";
+								mui.extend(aniShow_chat,temp);
+							}
+							self.append(sub);
+						}
+					});
+					 //当前激活选项
+					var activeTab_chat = subpages_chat[0];
+					
+					 //选项卡点击事件
+					mui('.mui-slider').on('tap', 'a', function(e) {
+						var targetTab = this.getAttribute('href');
+						if (targetTab == activeTab_chat) {
+							return;
+						}
+						
+						//显示目标选项卡
+						//若为iOS平台或非首次显示，则直接显示
+						if(mui.os.ios||aniShow[targetTab]){
+							plus.webview.show(targetTab);
+						}else{
+							//否则，使用fade-in动画，且保存变量
+							var temp = {};
+							temp[targetTab] = "true";
+							mui.extend(aniShow_chat,temp);
+							plus.webview.show(targetTab,"fade-in",30);
+						}
+						//隐藏当前;
+						plus.webview.hide(activeTab_chat);
+						//更改当前活跃的选项卡
+						activeTab_chat = targetTab;
+					});
+					
+				} else {
+					//显示目标选项卡
+					//若为iOS平台或非首次显示，则直接显示
+					if(mui.os.ios||aniShow[targetTab]){
+						plus.webview.show(targetTab);
+					}else{
+						//否则，使用fade-in动画，且保存变量
+						var temp = {};
+						temp[targetTab] = "true";
+						mui.extend(aniShow,temp);
+						plus.webview.show(targetTab,"fade-in",30);
+					}
+					//隐藏当前;
+					plus.webview.hide(activeTab);
+					//更改当前活跃的选项卡
+					activeTab = targetTab;
+					}
+				
+				
 			});
 			 //自定义事件，模拟点击“首页选项卡”
-			document.addEventListener('gohome', function() {
-				var defaultTab = document.getElementById("defaultTab");
-				//模拟首页点击
-				mui.trigger(defaultTab, 'tap');
-				//切换选项卡高亮
-				var current = document.querySelector(".mui-bar-tab>.mui-tab-item.mui-active");
-				if (defaultTab !== current) {
-					current.classList.remove('mui-active');
-					defaultTab.classList.add('mui-active');
-				}
-			});
-			
-			
-			
-//			/*  侧滑菜单栏   
-//			 * 主界面不动，菜单移动
-//			 */
-//			
-//			var main,menu, mask = mui.createMask(_closeMenu);
-//			var showMenu = false;  
-//			
-//			/*
-//			 * 返回键函数
-//			 */
-//			function back() {
-//				if (showMenu) {
-//					//菜单处于显示状态，返回键应该先关闭菜单,阻止主窗口执行mui.back逻辑；
-//					closeMenu();
-//					return false;
-//				} else {
-//					//菜单处于隐藏状态，执行返回时，要先close菜单页面，然后继续执行mui.back逻辑关闭主窗口；
-//					menu.close('none');
-//					return true;
+//			document.addEventListener('gohome', function() {
+//				var defaultTab = document.getElementById("defaultTab");
+//				//模拟首页点击
+//				mui.trigger(defaultTab, 'tap');
+//				//切换选项卡高亮
+//				var current = document.querySelector(".mui-bar-tab>.mui-tab-item.mui-active");
+//				if (defaultTab !== current) {
+//					current.classList.remove('mui-active');
+//					defaultTab.classList.add('mui-active');
 //				}
-//			}
-//			//plusReady事件后，自动创建menu窗口；
-//			mui.plusReady(function() {
-//				main = plus.webview.currentWebview();
-//				//setTimeout的目的是等待窗体动画结束后，再执行create webview操作，避免资源竞争，导致窗口动画不流畅；
-//				setTimeout(function () {
-//					//侧滑菜单默认隐藏，这样可以节省内存；
-//					menu = mui.preload({
-//						id: 'tab-webview-subpage-setting',
-//						url: 'tab-webview-subpage-setting.html',
-//						styles: {
-//							left: 0,
-//							width: '70%',
-//							zindex: 9997
-//						}
-//					});
-//				},300);
-//				
 //			});
-//			/**
-//			 * 显示菜单
-//			 */
-//			function openMenu() {
-//				if (!showMenu) {
-//					//侧滑菜单处于隐藏状态，则立即显示出来；
-//					//显示完毕后，根据不同动画效果移动窗体；
-//					menu.show('none', 0, function() {				
-//						menu.setStyle({
-//							left: '0%',
-//							transition: {
-//								duration: 150
-//							}
-//						});
-//								
-//					});
-//					//显示遮罩
-//					mask.show();
-//					showMenu = true;
-//				}
-//			}
-//			/**
-//			 * 关闭侧滑菜单
-//			 */
-//			function closeMenu () {
-//				_closeMenu();
-//				//关闭遮罩
-//				mask.close();
-//			}
-//		
-//			/**
-//			 * 关闭侧滑菜单（业务部分）
-//			 */
-//			function _closeMenu() {
-//				if (showMenu) {				
-//					//主窗体开始侧滑；
-//					menu.setStyle({
-//						left: '-70%',
-//						transition: {
-//							duration: 150
-//						}
-//					});
-//				
-//					//等窗体动画结束后，隐藏菜单webview，节省资源；
-//					setTimeout(function() {
-//						menu.hide();
-//					}, 200);
-//					//改变标志位
-//					showMenu = false;
-//				}
-//			}
-//		
-//
-//			 //点击左上角图标，打开侧滑菜单；
-//			document.querySelector('.mui-icon-img').addEventListener('tap', openMenu);
-//			 //在android4.4中的swipe事件，需要preventDefault一下，否则触发不正常
-//			 //故，在dragleft，dragright中preventDefault
-//			window.addEventListener('dragright', function(e) {
-//				e.detail.gesture.preventDefault();
-//			});
-//			window.addEventListener('dragleft', function(e) {
-//				e.detail.gesture.preventDefault();
-//			});
-//			 //主界面向右滑动，若菜单未显示，则显示菜单；否则不做任何操作；
-//			window.addEventListener("swiperight", openMenu);
-//			 //主界面向左滑动，若菜单已显示，则关闭菜单；否则，不做任何操作；
-//			window.addEventListener("swipeleft", closeMenu);
-//			 //menu页面向左滑动，关闭菜单；
-//			window.addEventListener("menu:swipeleft", closeMenu);
-//	
-//			//重写mui.menu方法，Android版本menu按键按下可自动打开、关闭侧滑菜单；
-//			mui.menu = function() {
-//				if (showMenu) {
-//					closeMenu();
-//				} else {
-//					openMenu();
-//				}
-//			}
+						
 		</script>
 	</body>
 
