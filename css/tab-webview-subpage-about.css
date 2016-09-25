@@ -1,0 +1,17 @@
+.mui-slider .mui-slider-group.mui-slider-loop {
+	top: -20px;
+	height: 180px;
+}
+.mui-card-view, .mui-card-view-cell {
+	list-style: none;
+	text-decoration: none;
+	padding: 0;
+	margin: 0;
+}
+input[type=search] {
+	margin-bottom: 5px;
+}
+.mui-card-content-title {
+	color: #000000;
+	font-weight: bold;
+}

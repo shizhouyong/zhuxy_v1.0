@@ -1,0 +1,60 @@
+html,
+body {
+	background-color: #efeff4;
+}
+ul,li {
+	list-style: none;
+	text-decoration: none;
+}
+p {
+	vertical-align: middle;
+	text-indent: 1em;
+	display: inline-block;
+}
+.circle {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	border: 2px solid mediumpurple;
+	border-radius: 15px;
+	overflow: hidden;
+	z-index: 100;
+}
+.circle span {
+	z-index: 1;
+}
+.img {
+	width: 30px;
+	height: 30px;
+}
+.mui-grid-view.mui-grid-9 .mui-table-view-cell {
+	padding: 0;
+}
+.mui-table-view.mui-grid-view .mui-table-view-cell {
+	font-size: 10px;
+}
+.mui-card-view, .mui-card-view-cell {
+	list-style: none;
+	text-decoration: none;
+	padding: 0;
+	margin: 0;
+}
+input[type=search] {
+	margin-bottom: 5px;
+}
+.mui-card-header {
+	padding: 10px;
+	margin: 0;
+	vertical-align: bottom;
+}
+.mui-card-header p {
+	color: #333;
+	font-size: 17px;
+	margin: 0;
+}
+.mui-card-content-inner {
+	padding: 10px;
+}
+.mui-card-content-inner ul {
+	padding: 0;
+}

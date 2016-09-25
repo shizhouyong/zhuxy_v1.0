@@ -289,7 +289,10 @@
 					"css/iconfont.css",
 					"fonts/iconfont.ttf",
 					"js/subpage-chat.js",
-					"tab-webview-subpage-topic.html"
+					"tab-webview-subpage-topic.html",
+					"js/tab-webview-main.js",
+					"css/tab-webview-main.css",
+					"css/style.css"
 				],
 				"refer": [
 					"tab-webview-subpage-setting.html",
@@ -305,7 +308,9 @@
 				"resources": [
 					"js/mui.min.js",
 					"css/mui.min.css",
-					"images/user-photo.png"
+					"images/user-photo.png",
+					"js/tab-webview-subpage-contact.js",
+					"css/tab-webview-subpage-contact.css"
 				],
 				"refer": [
 					"chat.html"
@@ -321,7 +326,10 @@
 					"images/shuijiao.jpg",
 					"images/yuantiao.jpg",
 					"images/logo.png",
-					"fonts/mui.ttf"
+					"fonts/mui.ttf",
+					"js/refresh.js",
+					"css/tab-webview-subpage-about.css",
+					"js/tab-webview-subpage-about.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -342,7 +350,9 @@
 					"js/mui.view.js",
 					"images/logo.png",
 					"css/iconfont.css",
-					"fonts/iconfont.ttf"
+					"fonts/iconfont.ttf",
+					"css/tab-webview-subpage-setting.css",
+					"js/tab-webview-subpage-setting.js"
 				],
 				"refer": [
 					"login.html",
@@ -409,7 +419,9 @@
 					"images/logo.png",
 					"js/mui.min.js",
 					"css/iconfont.css",
-					"css/mui.min.css"
+					"css/mui.min.css",
+					"js/tab-webview-subpage-asking.js",
+					"css/tab-webview-subpage-asking.css"
 				],
 				"refer": [],
 				"priority": 0
@@ -420,7 +432,9 @@
 					"js/mui.min.js",
 					"fonts/mui.ttf",
 					"css/iconfont.css",
-					"css/mui.min.css"
+					"css/mui.min.css",
+					"js/tab-webview-subpage-topic.js",
+					"css/tab-webview-subpage-topic.css"
 				],
 				"refer": [],
 				"priority": 0
@@ -433,7 +447,9 @@
 					"fonts/mui.ttf",
 					"css/iconfont.css",
 					"css/mui.min.css",
-					"images/shuijiao.jpg"
+					"images/shuijiao.jpg",
+					"js/tab-webview-subpage-attention.js",
+					"css/tab-webview-subpage-attention.css"
 				],
 				"refer": [],
 				"priority": 0

@@ -1,0 +1,12 @@
+.mui-bar-nav {
+	height: 50px;
+	background-color: #0662BF;
+}
+.mui-title {
+	color: #fff;
+	line-height: 50px;
+}
+.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+    color: #f2f4f5;
+    border-bottom: 2px solid #f2f4f5;
+}

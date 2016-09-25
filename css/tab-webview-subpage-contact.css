@@ -1,0 +1,41 @@
+html,body {
+	background-color: #efeff4;
+}
+.mui-bar-nav {
+	height: 50px;
+	background-color: #0662BF;
+}
+.mui-title {
+	color: #fff;
+	line-height: 50px;
+}
+.title{
+	/*margin: 20px 15px 10px;*/
+	color: #6d6d72;
+	font-size: 15px;
+}
+ .oa-contact-cell.mui-table .mui-table-cell {
+	padding: 11px 0;
+	vertical-align: middle;
+}			
+.oa-contact-cell {
+	position: relative;
+	margin: -11px 0;
+}
+.oa-contact-avatar {
+	width: 60px;
+}
+.oa-contact-avatar img {
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+}
+.oa-contact-content {
+	width: 100%;
+}
+.oa-contact-name {
+	margin-right: 20px;
+}
+.oa-contact-name, .oa-contact-position {
+	float: left;
+}

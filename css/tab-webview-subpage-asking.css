@@ -1,0 +1,19 @@
+html,
+body {
+	background-color: #efeff4;
+}
+.mui-grid-view.mui-grid-9 .mui-table-view-cell {
+	padding: 0;
+}
+.mui-table-view.mui-grid-view .mui-table-view-cell {
+	font-size: 10px;
+}
+.mui-card-view, .mui-card-view-cell {
+	list-style: none;
+	text-decoration: none;
+	padding: 0;
+	margin: 0;
+}
+input[type=search] {
+	margin-bottom: 5px;
+}
